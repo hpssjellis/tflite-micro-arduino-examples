@@ -31,7 +31,7 @@ limitations under the License.
 
 #ifdef ARDUINO
 
-#if defined(ARDUINO_ARDUINO_NANO33BLE) || defined (SAMD_NANO_33_IOT)  || defined (__SAM3X8E__)  ||  defined (SEEED_XIAO_M0)    ||   defined (CORE_CM7)   || defined (CORE_CM4)  || defined (TEENSYDUINO) ||  defined (ARDUINO_NANO33BLE) ||  defined (YOUR_BOARD1) 
+#if defined(ARDUINO_ARDUINO_NANO33BLE)  || defined (NICLA_VISION)   || defined (NANO_RP2040_CONNECT)        || defined (SAMD_NANO_33_IOT)  || defined (__SAM3X8E__)  ||  defined (SEEED_XIAO_M0)    ||   defined (CORE_CM7)   || defined (CORE_CM4)  || defined (TEENSYDUINO) ||  defined (ARDUINO_NANO33BLE) ||  defined (YOUR_BOARD1) 
 #include <cstdint>
 
 #include "button.h"
