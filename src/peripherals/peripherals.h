@@ -11,6 +11,16 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+
+Portenta I2S
+   I2S1 GPIO Configuration
+    PB5     ------> I2S1_SDO   [serial data]
+    PG10     ------> I2S1_WS   [word-select, left=0, right=1]
+    PG11     ------> I2S1_CK   [serial clock]
+    PC4     ------> I2S1_MCK   [master clock output if codex needs it]
+
+
 ==============================================================================*/
 
 #ifndef PERIPHERALS_H_
