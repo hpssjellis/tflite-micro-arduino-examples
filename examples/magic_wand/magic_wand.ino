@@ -11,7 +11,14 @@ limitations under the License.
 ==============================================================================*/
 
 #include <ArduinoBLE.h>
-#include <Arduino_LSM9DS1.h>
+
+
+//#include <Arduino_LSM9DS1.h>            // for Nano33BleSense REV1  (Board has no REV1 label)
+#include "Arduino_BMI270_BMM150.h"   // for Nano33BleSense REV2  (Board has REV2 label on it)
+
+
+
+
 #include <TensorFlowLite.h>
 
 #include <cmath>
