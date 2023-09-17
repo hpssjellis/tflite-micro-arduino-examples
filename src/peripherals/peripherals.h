@@ -13,13 +13,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-Portenta I2S
+Portenta I2S UNTESTED
    I2S1 GPIO Configuration
     PB5     ------> I2S1_SDO   [serial data]
     PG10     ------> I2S1_WS   [word-select, left=0, right=1]
     PG11     ------> I2S1_CK   [serial clock]
     PC4     ------> I2S1_MCK   [master clock output if codex needs it]
 
+Nicla Vision untested
+
+constexpr PinName kI2S_BIT_CLK = PA_15;   
+constexpr PinName kI2S_LR_CLK =  PC_10;    
+constexpr PinName kI2S_DATA_IN = PC_11;       
+constexpr PinName kI2S_DATA_OUT = PB_2;    
 
 ==============================================================================*/
 
