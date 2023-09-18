@@ -32,23 +32,22 @@ constexpr PinName kI2S_DATA_OUT = PB_2;
 #ifndef PERIPHERALS_H_
 #define PERIPHERALS_H_
 
-#ifdef ARDUINO
+
 #include <Arduino.h>
-#include <Wire.h>
 
 // Temporary fix, see buganizer #268498682, arduino-examples issue #169
 #undef abs
 
-#else  // ARDUINO
-#error "unsupported framework"
-#endif  // ARDUINO
+
 
 #include "utility.h"
 
-#ifdef ARDUINO
+
 
 #if defined(ARDUINO_ARDUINO_NANO33BLE)   ||  defined (YOUR_BOARD1) 
 #include <cstdint>
+
+#include <Wire.h>
 
 #include "button.h"
 #include "led.h"
@@ -74,7 +73,7 @@ constexpr pin_size_t kLED_DEFAULT_GPIO = D13;
 }  // namespace peripherals
 
 
- #if  defined (PORTENTA_H7_M7 )     || defined (PORTENTA_X8)  || defined (PORTENTA_H7_M4)  || defined (TEENSYDUINO) ||  defined (ARDUINO_NANO33BLE) ||  defined (YOUR_BOARD1) 
+#elif  defined (PORTENTA_H7_M7 )     || defined (PORTENTA_X8)  || defined (PORTENTA_H7_M4)  || defined (TEENSYDUINO)  ||  defined (YOUR_BOARD1) 
 #include <cstdint>
 
 
@@ -93,7 +92,7 @@ constexpr pin_size_t kLED_DEFAULT_GPIO = D13;
 
  // Note:  NANO_33_BLE deprecated as MBED of 1.30, new name: ARDUINO_NANO33BLE  
  // Note:  CORE_CM4 MBED of 1.30, moved above  
- #elif   defined (NANO_33_BLE)   ||  defined (YOUR_BOARD2)  // very old nano33Ble code might be useful
+ #elif   defined (NANO_33_BLE)   ||  defined (YOUR_BOARD2)  // very old nano33Ble code might be useful for other boards
  
      #define DEBUG_SERIAL_OBJECT (Serial) 
 
@@ -125,11 +124,11 @@ constexpr pin_size_t kLED_DEFAULT_GPIO = D13;
 
 
 
-#else  // ARDUINO_ARDUINO_NANO33BLE
-#error "unsupported board"
+#else  
+   #error "unsupported board"
 
 #endif  // ARDUINO_ARDUINO_NANO33BLE
 
-#endif  // ARDUINO
+
 
 #endif  // PERIPHERALS_H_
