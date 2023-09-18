@@ -36,8 +36,8 @@ void loop() {
   Serial.println("Your board is defined as SEEED_XIAO_M0");
 #endif
 
-#if defined(SEEED_XIAO_ESP3S3)   ||  defined (YOUR_BOARD1) 
-  Serial.println("Your board is defined as SEEED_XIAO_ESP3S3");
+#if defined(YOUR_BOARD1)  
+  Serial.println("Your board is defined as YOUR_BOARD1");
 #endif
 
   Serial.println("Boards Done");
