@@ -10,7 +10,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include <ArduinoBLE.h>
+//#include <ArduinoBLE.h>
 
 
 //#include <Arduino_LSM9DS1.h>            // for Nano33BleSense REV1  (Board has no REV1 label)
@@ -56,9 +56,9 @@ constexpr int raster_byte_count =
     raster_height * raster_width * raster_channels;
 int8_t raster_buffer[raster_byte_count];
 
-BLEService service(BLE_SENSE_UUID("0000"));
-BLECharacteristic strokeCharacteristic(BLE_SENSE_UUID("300a"), BLERead,
-                                       stroke_struct_byte_count);
+//BLEService service(BLE_SENSE_UUID("0000"));
+//BLECharacteristic strokeCharacteristic(BLE_SENSE_UUID("300a"), BLERead,
+ //                                      stroke_struct_byte_count);
 
 // String to calculate the local and device name
 String name;
@@ -525,6 +525,8 @@ void setup() {
 
   SetupIMU();
 
+  /*
+
   if (!BLE.begin()) {
     MicroPrintf("Failed to initialized BLE!");
     while (true) {
@@ -555,6 +557,10 @@ void setup() {
   BLE.addService(service);
 
   BLE.advertise();
+
+
+
+  */
 
   // Map the model into a usable data structure. This doesn't involve any
   // copying or parsing, it's a very lightweight operation.
@@ -608,8 +614,10 @@ void setup() {
 }
 
 void loop() {
-  BLEDevice central = BLE.central();
+ // BLEDevice central = BLE.central();
 
+
+/*
   // if a central is connected to the peripheral:
   static bool was_connected_last = false;
   if (central && !was_connected_last) {
@@ -617,6 +625,8 @@ void loop() {
     MicroPrintf("Connected to central: %s", central.address().c_str());
   }
   was_connected_last = central;
+
+*/
 
   const bool data_available =
       IMU.accelerationAvailable() || IMU.gyroscopeAvailable();
@@ -635,10 +645,15 @@ void loop() {
     UpdateOrientation(gyroscope_samples_read, current_gravity,
                       current_gyroscope_drift);
     UpdateStroke(gyroscope_samples_read, &done_just_triggered);
+
+/*
+
     if (central && central.connected()) {
       strokeCharacteristic.writeValue(stroke_struct_buffer,
                                       stroke_struct_byte_count);
     }
+
+    */
   }
 
   if (accelerometer_samples_read > 0) {
