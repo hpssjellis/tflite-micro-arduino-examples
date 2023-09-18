@@ -74,9 +74,55 @@ constexpr pin_size_t kLED_DEFAULT_GPIO = D13;
 }  // namespace peripherals
 
 
+ #if  defined (PORTENTA_H7_M7 )     || defined (PORTENTA_X8)  || defined (PORTENTA_H7_M4)  || defined (TEENSYDUINO) ||  defined (ARDUINO_NANO33BLE) ||  defined (YOUR_BOARD1) 
 
-#elif   defined (CORE_CM7)  ||  defined (YOUR_BOARD1) 
-   #include <cstdint>
+
+
+namespace peripherals {
+
+constexpr uint32_t kI2C_CLOCK = 100000;
+
+constexpr pin_size_t kBUTTON_GPIO = D8;
+
+constexpr pin_size_t kLED_DEFAULT_GPIO = D13;
+
+}  // namespace peripherals
+
+
+
+
+ // Note:  NANO_33_BLE deprecated as MBED of 1.30, new name: ARDUINO_NANO33BLE  
+ // Note:  CORE_CM4 MBED of 1.30, moved above  
+ #elif   defined (NANO_33_BLE)   ||  defined (YOUR_BOARD2)  // very old nano33Ble code might be useful
+ 
+     #define DEBUG_SERIAL_OBJECT (Serial) 
+
+     extern "C" void DebugLog(const char* s) {
+        static bool is_initialized = false;
+        if (!is_initialized) {
+           DEBUG_SERIAL_OBJECT.begin(9600);
+           is_initialized = true;
+        }
+        DEBUG_SERIAL_OBJECT.print(s);
+     }
+
+ #elif defined (__SAM3X8E__)  ||  defined (YOUR_BOARD3) // Arduino UNO style boards
+
+     #define DEBUG_SERIAL_OBJECT (SerialUSB) 
+
+     extern "C" void DebugLog(const char* s) {
+        static bool is_initialized = false;
+        if (!is_initialized) {
+           DEBUG_SERIAL_OBJECT.begin(9600);
+           is_initialized = true;
+        }
+        DEBUG_SERIAL_OBJECT.print(s);
+     }
+ #elif defined (SEEED_XIAO_M0)  ||  defined (YOUR_BOARD4) // The new $5 USD Seeeduino XIAO board
+
+     #define CFG_TUSB_DEBUG
+
+
 
 
 #else  // ARDUINO_ARDUINO_NANO33BLE
