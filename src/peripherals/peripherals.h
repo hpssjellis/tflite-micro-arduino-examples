@@ -31,7 +31,7 @@ limitations under the License.
 
 #ifdef ARDUINO
 
-#if defined(ARDUINO_ARDUINO_NANO33BLE)
+#if defined(ARDUINO_NANO33BLE)
 #include <cstdint>
 
 #include "button.h"
@@ -57,10 +57,52 @@ constexpr pin_size_t kLED_DEFAULT_GPIO = D13;
 
 }  // namespace peripherals
 
-#else  // ARDUINO_ARDUINO_NANO33BLE
+
+
+#elif  defined (PORTENTA_H7_M7)    || defined (PORTENTA_H7_M4)     || defined (PORTENTA_X8)  || defined (TEENSYDUINO) ||   defined (YOUR_BOARD1) // CORE_CM7 is for the PortentaH7 outer core
+   #include <cstdint> 
+
+// possibly some other stuff here like the Nano33BleSense, but I am not sure why you would not just put that in the specific sketch.
+
+ #elif   defined (NANO_33_BLE)   ||  defined (YOUR_BOARD2)  //Code for very old version of the Nano33Ble, might be useful for some boards
+ 
+     #define DEBUG_SERIAL_OBJECT (Serial) 
+
+     extern "C" void DebugLog(const char* s) {
+        static bool is_initialized = false;
+        if (!is_initialized) {
+           DEBUG_SERIAL_OBJECT.begin(9600);
+           is_initialized = true;
+        }
+        DEBUG_SERIAL_OBJECT.print(s);
+     }
+
+ #elif defined (__SAM3X8E__)  ||  defined (YOUR_BOARD3) // Arduino UNO style boards
+
+     #define DEBUG_SERIAL_OBJECT (SerialUSB) 
+
+     extern "C" void DebugLog(const char* s) {
+        static bool is_initialized = false;
+        if (!is_initialized) {
+           DEBUG_SERIAL_OBJECT.begin(9600);
+           is_initialized = true;
+        }
+        DEBUG_SERIAL_OBJECT.print(s);
+     }
+ #elif defined (SEEED_XIAO_M0)  ||  defined (YOUR_BOARD4) // The new $5 USD Seeeduino XIAO board
+
+     #define CFG_TUSB_DEBUG
+     
+
+
+
+
+
+
+#else  // end of all the #if statements
 #error "unsupported board"
 
-#endif  // ARDUINO_ARDUINO_NANO33BLE
+#endif  // ARDUINO_ARDUINO_NANO33BLE and all the other ones
 
 #endif  // ARDUINO
 
