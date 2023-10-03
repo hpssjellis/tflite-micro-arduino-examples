@@ -73,7 +73,7 @@ constexpr pin_size_t kLED_DEFAULT_GPIO = D13;
 }  // namespace peripherals
 
 
-#elif  defined (CORE_CM7)  || defined (CORE_CM4)  || defined (ARDUINO_PORTENTA_H7_M7) || defined (ARDUINO_PORTENTA_H7_M4) || defined (ARDUINO_PORTENTA_X8)  || defined (TEENSYDUINO)  ||  defined (YOUR_BOARD1) 
+#elif  defined (CORE_CM7)  || defined (CORE_CM4)  || defined (ARDUINO_PORTENTA_H7_M7) || defined (ARDUINO_PORTENTA_H7_M4) || defined (ARDUINO_PORTENTA_X8)    ||  defined (YOUR_BOARD1) 
 #include <cstdint>
 
 
