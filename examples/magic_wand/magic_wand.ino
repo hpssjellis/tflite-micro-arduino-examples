@@ -19,7 +19,7 @@ limitations under the License.
 
 
 
-#include <TensorFlowLite.h>
+#include <TensorFlowLiteRocksetta2023.h>
 
 #include <cmath>
 
