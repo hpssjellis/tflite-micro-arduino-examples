@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include <TensorFlowLite.h>
+#include <TensorFlowLiteRocksetta2023.h>
 
 #include "detection_responder.h"
 #include "image_provider.h"
